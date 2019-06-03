@@ -1,4 +1,4 @@
-package Sringorder;
+package Stringorder;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 public class Stringorder {//类名等于文件名
