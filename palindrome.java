@@ -1,11 +1,10 @@
-// 对于一个链表，请设计一个时间复杂度为O(n),额外空间复杂度为O(1)的算法，判断其是否为回文结构。
-// 给定一个链表的头指针A，请返回一个bool值，代表其是否为回文结构。保证链表长度小于等于900。
-// 测试样例：
+// 瀵逛簬涓�涓摼琛紝璇疯璁′竴涓椂闂村鏉傚害涓篛(n),棰濆绌洪棿澶嶆潅搴︿负O(1)鐨勭畻娉曪紝鍒ゆ柇鍏舵槸鍚︿负鍥炴枃缁撴瀯銆�
+// 缁欏畾涓�涓摼琛ㄧ殑澶存寚閽圓锛岃杩斿洖涓�涓猙ool鍊硷紝浠ｈ〃鍏舵槸鍚︿负鍥炴枃缁撴瀯銆備繚璇侀摼琛ㄩ暱搴﹀皬浜庣瓑浜�900銆�
+// 娴嬭瘯鏍蜂緥锛�
 // 1->2->2->1
-// 返回：true
-import java.util.*;
- 
-public class ListNode {
+// 杩斿洖锛歵rue
+
+ class ListNode {
     int val;
     ListNode next = null;
  
@@ -13,7 +12,7 @@ public class ListNode {
         this.val = val;
     }
 }
-public class PalindromeList {
+ class PalindromeList {
     public ListNode getMid(ListNode head){
     ListNode fast=head;
     ListNode low=head;

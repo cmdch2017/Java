@@ -1,7 +1,7 @@
 package Stringorder;
 import java.lang.reflect.Array;
 import java.util.Arrays;
-public class Stringorder {//类名等于文件名
+ class Stringorder {//类名等于文件名
 	private static final String SPACE_SEPARATOR=" ";
 	public static void main(String[] args) {
 		String numStr ="-7 20 78 9 88 -100 36 29";

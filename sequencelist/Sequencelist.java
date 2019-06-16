@@ -3,7 +3,7 @@ package sequencelist;
 import java.util.Arrays;
 
 public class Sequencelist {
-	//属性
+	//属�??
 	private int[] array;//用来保存数据
 	private int size;
 public Sequencelist() {
@@ -80,10 +80,10 @@ public String toString() {
 }
 private void ensureCapcity() {
 	if(size<array.length) {
-		//不需要扩容
+		//不需要扩�?
 		return;
 	}
-	//申请新房子
+	//申请新房�?
 	int newCapacity=array.length+array.length/2;
 	int[] newArray=new int[newCapacity];
 	//搬家

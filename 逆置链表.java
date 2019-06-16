@@ -1,8 +1,7 @@
 import java.util.*;
-public class ListNode {
+public class ƒÊ÷√¡¥±Ì {
     int val;
     ListNode next = null;
-}
 public ListNode reverse(ListNode head){
     ListNode pre=null;
     ListNode next=null;
@@ -13,4 +12,5 @@ public ListNode reverse(ListNode head){
         cur=next;
     }
     return pre;
+}
 }
