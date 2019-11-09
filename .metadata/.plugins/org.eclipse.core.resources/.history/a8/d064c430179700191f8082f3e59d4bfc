@@ -1,0 +1,13 @@
+package test_618;
+
+public class Mic implements USB {
+	public void turnOn() {
+		// TODO 自动生成的方法存根
+		System.out.println("麦克风启动了");
+	}
+	public void turnOff() {
+		// TODO 自动生成的方法存根
+		System.out.println("麦克风关闭了");
+	}
+
+}

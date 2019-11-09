@@ -1,0 +1,95 @@
+package sequencelist;
+
+import java.util.Arrays;
+
+public class Sequencelist {
+	//属性
+	private int[] array;//用来保存数据
+	private int size;
+public Sequencelist() {
+array=new int[11];
+size=0;//实际元素个数
+}
+public void pushFront(int element) {
+	for(int i=size-1;i>=0;i--) {
+		array[i+1]=array[i];
+	}
+	array[0]=element;
+	size++;
+}
+public void pushBack(int element) {
+	array[size++]=element;
+}
+public void insert(int index,int element) {
+	//size-1为最后实际数字的下标
+	for(int i=size-1;i>=index;i--) {
+		array[i+1]=array[i];
+	}
+	array[index]=element;
+	size++;
+}
+public void popFront() {
+	for(int i=0;i<size-1;i++) {
+		array[i]=array[i+1];
+	}
+	size--;
+}
+public void popBack() {
+	array[--size]=0;
+}
+public int[] getArray() {
+	return array;
+}
+public void setArray(int[] array) {
+	this.array = array;
+}
+public int getSize() {
+	return size;
+}
+public void setSize(int size) {
+	this.size = size;
+}
+public void erase(int index) {
+	//中间删除
+	for(int i=index;i<size;i++) {
+		array[i]=array[i+1];
+	}
+	size--;
+}
+public int indexOf(int element) {
+	for(int i=0;i<size;i++) {
+		if(array[i]==element)
+			return i;
+	}
+		return 0;
+}
+public String toString() {
+	return Arrays.toString(Arrays.copyOf(array,size));
+	//original the array to be copiednewLength the length of the copy to be returned
+	//a copy of the original array
+}
+public static void main(String[] args) {
+	Sequencelist seqList=new Sequencelist();
+	int ret=seqList.indexOf(10);
+	System.out.println(seqList.toString());
+	seqList.pushBack(1);
+	seqList.pushBack(2);
+	seqList.pushBack(3);
+	System.out.println(seqList.toString());
+	seqList.pushFront(10);
+	seqList.pushFront(20);
+	seqList.pushFront(30);
+	System.out.println(seqList.toString());
+	seqList.insert(2, 100);
+	seqList.insert(4, 200);
+	System.out.println(seqList.toString());
+	seqList.erase(6);
+	System.out.println(ret);
+	System.out.println(seqList.toString());
+	seqList.popFront();
+	System.out.println(seqList.toString());
+	seqList.popBack();
+	System.out.println(seqList.toString());
+	System.out.println(ret);
+}
+}

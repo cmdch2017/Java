@@ -1,0 +1,16 @@
+package test_1014;
+
+public class Tester{
+ public void replaeSpace() {
+	 
+ }
+ public static void main(String[] args) {
+	 String oldString="We";
+	 StringBuilder newString=new StringBuilder();
+			for(String i:oldString.split(" ")) { 
+				newString.append(i+"%20");
+			}
+		String a=newString.substring(0, newString.length()-3);
+			System.out.println(a);
+ }
+}

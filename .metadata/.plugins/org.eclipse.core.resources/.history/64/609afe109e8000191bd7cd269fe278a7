@@ -1,0 +1,25 @@
+package sequence_test;
+import java.util.Arrays;
+public class Sequence_test {
+private int[] array;
+private int size;//实际大小
+public Sequence_test() {
+	 array=new int[11];
+	 size=0;
+}
+public void pushFront(int element) {
+	for(int i=size;i>0;i--) {
+		array[i]=array[i-1];
+	}
+	array[0]=element;
+	size++;
+}
+public String toString() {
+	return Arrays.toString(Arrays.copyOf(array,size));
+}
+public static void main (String[] args) {
+	Sequence_test list=new Sequence_test();
+	list.pushFront(10);
+	System.out.println(list.toString());
+}
+}

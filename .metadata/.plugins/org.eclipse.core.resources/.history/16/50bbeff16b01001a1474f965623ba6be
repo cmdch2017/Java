@@ -1,0 +1,23 @@
+package test117;
+
+import java.util.Stack;
+
+public class Parenthesis {
+    public boolean chkParenthesis(String A, int n) {
+    	char[] array=A.toCharArray();
+    	Stack<Character> ss=new Stack<>();
+    	for(int i=0;i<array.length;i++) {
+    		if((array[i]!='(')||(array[i]!=')'))
+    			return false;
+    		if(array[i]!='('){
+    		ss.push(array[i]);
+    		}
+    		else {
+    			if(ss==null) return false;
+    			ss.pop();
+    		}
+    	}
+		return ss==null;
+        // write code here
+    }
+}

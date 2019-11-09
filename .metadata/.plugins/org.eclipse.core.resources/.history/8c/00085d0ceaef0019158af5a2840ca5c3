@@ -1,0 +1,179 @@
+package 实验课一;
+import java.util.Arrays;
+import java.util.Random;
+
+public class a {
+	public static void insertSort(double[] array) {
+		for (int i = 0; i < array.length - 1; i++) {
+			double key = array[i + 1];
+			int j;
+			for (j = i; j >= 0 && key < array[j]; j--) {
+				array[j + 1] = array[j];
+			}
+			array[j + 1] = key;
+		}
+	}
+
+	private static void insertSortWithGap(double[] array, int gap) {
+		for (int i = 0; i < array.length - gap; i++) {
+			double key = array[i + gap];
+			int j;
+			for (j = i; j >= 0 && key < array[j]; j -= gap) {
+				array[j + gap] = array[j];
+			}
+			array[j + gap] = key;
+		}
+	}
+
+	public static void shellSort(double[] array) {
+	    int gap = array.length;
+	    while (true) {
+	        gap = gap / 3 + 1;
+	        insertSortWithGap(array, gap);
+	        if (gap == 1) {
+	            return;
+			}
+		}
+	}
+
+	private static int[] buildSortedArray(int n) {
+		int[] array = new int[n];
+	    for (int i = 0; i < n; i++) {
+	        array[i] = i;
+		}
+
+	    return array;
+	}
+
+	private static int[] buildReversedSortedArray(int n) {
+		int[] array = new int[n];
+		for (int i = 0; i < n; i++) {
+			array[i] = n - i;
+		}
+
+		return array;
+	}
+
+	private static double[] buildRandomArray(int n) {
+		Random random = new Random(20190828);
+		double[] array = new double[n];
+		for (int i = 0; i < n; i++) {
+		    array[i] = random.nextDouble();
+		}
+
+		return array;
+	}
+
+	private static int[] buildEqualsArray(int n) {
+		int[] array = new int[n];
+		for (int i = 0; i < n; i++) {
+			array[i] = n;
+		}
+
+		return array;
+	}
+
+	public static void selectSort(double[] array) {
+		// 每次选最大的数
+	    for (int i = 0; i < array.length - 1; i++) {
+			// 无序区间	[0, array.length - i)
+	        // 有序区间	[array.lenngth - i, array.length)
+            int max = 0;
+            for (int j = 1; j < array.length - i; j++) {
+                if (array[j] >= array[max]) {
+                    max = j;
+				}
+			}
+
+            // 交换最大的数和无序区间的最后一个数
+            swap(array, max, array.length - i - 1);
+		}
+	}
+
+	private static void swap(double[] array, int i, int j) {
+	    double t = array[i];
+	    array[i] = array[j];
+	    array[j] = t;
+	}
+	public static void quickSort(double[] array) {
+		InnerquickSort(array,0,array.length-1);
+	}
+    public static void InnerquickSort(double[] array,int left,int right) {	
+    if(left>right) return;
+    int index=reviewpartition(array,left,right);
+    InnerquickSort(array,left,index-1);
+    InnerquickSort(array,index+1,right);
+    }
+    private static int reviewpartition(double[] array,int left,int right) {
+    	//建立基准值
+    	double pivot=array[left];
+    	int p=left;
+    	int q=right;
+    	while(p<q) {
+    		while(p<q&&array[q]>=pivot) {
+    			q--;
+    		}
+    		while(p<q&&array[p]<=pivot) {
+    			p++;
+    		}
+    		swap(array,p,q);
+    	}
+    	swap(array,p,left);
+    		return p;
+    }
+    public static void heapSort(double[] array) {
+    	//建立一个堆
+    	createHeap(array);
+    	//减治算法外层循环-1
+    	for(int i=0;i<array.length-1;i++) {
+    		//找到最大值max交换，这里大堆，下标0处为最大元素
+    		swap(array,array.length-1-i,0);
+    		heapify(array,array.length-i-1,0);
+    	}
+    }
+    private static void createHeap(double[] array) {
+    	// TODO 自动生成的方法存根
+    	//最后一个父节点开始遍历调整
+    	int parent=(array.length-1-1)/2;
+    	for(int i=parent;i>=0;i--) {
+    		heapify(array,array.length,i);//数组，实际长度，调整下标位置
+    	}
+    	
+    }
+
+	private static void heapify(double[] array, int size, int index) {
+    	// TODO 自动生成的方法存根
+    	//（是否是叶子节点）判断是否越界
+    	//max记录：比较左右孩子谁大
+    	//max与index比较是否需要交换（建立大堆，如果array[index]<array[max]需要交换，否则不需要）
+    	//违反下标规则
+    	if(size<=index) return;
+    	while(true) {
+    		int leftchild=2*index+1;
+    		int rightchild=2*index+2;
+    		if(leftchild>=size) return;//左孩子存在
+    		int max=leftchild;
+    		if((rightchild<size)&&(array[leftchild]<array[rightchild]))
+    			max=rightchild;
+    	    //注意这里返回
+    		if(array[index]>=array[max]) {return;}
+    	    	swap(array,index,max);
+    	    	index=max;
+    	    	}
+    	}
+	public static void main(String[] args) {
+	    // 有序 | 无序 | 随机值 | 完全相等的
+        double[] array;
+		array = buildRandomArray(200000);
+		//System.out.println(Arrays.toString(array));
+        long begin = System.nanoTime();	// 纳秒
+        //heapSort(array);
+		//insertSort(array);
+		//shellSort(array);
+		//selectSort(array);
+        quickSort(array);
+		long end = System.nanoTime();	// 纳秒
+		System.out.println(end - begin);
+		//System.out.println(Arrays.toString(array));
+	}
+}

@@ -1,0 +1,23 @@
+package test_618;
+interface USB{
+	 void turnOn();
+	 void turnOff();
+}
+
+class Mouse implements USB{
+	public void turnOn() {
+		System.out.println("鼠标启动了");
+		}
+	public void turnOff() {
+		System.out.println("鼠标关闭了");
+	}
+}
+class Computer{
+	private USB[] usbArr=new USB[4];
+}
+public class Solution {
+public static void main(String[] args) {
+	Computer c=new Computer();
+	//c.add(new Mouse());
+}
+}

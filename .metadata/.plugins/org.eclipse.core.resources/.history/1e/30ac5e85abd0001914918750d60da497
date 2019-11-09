@@ -1,0 +1,77 @@
+package test_96;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+class Node{
+	int  val;
+	int key;
+	Node left;
+	Node right;
+public	static Node root=null;
+}
+public class Solution {
+	Map<String,Integer> count(String[] words){
+		Map<String,Integer> map=new HashMap<>();
+		for(String n:words)
+		map.put(n,map.getOrDefault(n, 0)+1);
+		return map;
+		
+	}
+	public List<String> subdomainVisits(String[] cpdomains){
+		Map<String,Integer> count=new HashMap<>();
+		for(String ai:cpdomains) {
+	    	String[] t=ai.split(" ");
+	    	//数字域名分割
+	    	int n=Integer.valueOf(t[0]);
+	    	String domain=t[1];
+	    	//域名在分割
+	    	String[] u=domain.split("\\.");
+	    	for(int i=0;i<u.length;i++) {
+	    		String[] sub=Arrays.copyOfRange(u, i, u.length);
+	    		//数组中各个域名碎片重组
+	    		String d=String.join(".", sub);
+	    		int oldCount=count.getOrDefault(d, 0);
+	    		count.put(d,oldCount+n);
+	    	}
+	    }
+return null;
+	}
+	public Node root=null;
+	public int getOrDefault(int key,int defaultValue) {
+	//	if(root==null) return defaultValue;
+		while(root!=null) {
+		if(root.val==key){
+			return root.val;
+			}
+		else if(root.val<key){
+		root=root.left;
+		}
+		else {
+			root=root.right;
+		}
+		}
+		return defaultValue;
+	}
+	public Set<Integer> keySet(){
+		Set<Integer> result=new HashSet();
+		
+	}
+	public static void main(String[] args) {
+    /*
+	String s="900 google.mail.com";
+    String[] t=s.split(" ");
+    for(String a:t) {
+    	System.out.println(a);
+    }
+    int n=Integer.valueOf(t[0]);
+   
+    String[] v= {"google","com"};
+    String w=String.join(".", v);
+    //System.out.println(w);*/
+		
+	}
+}

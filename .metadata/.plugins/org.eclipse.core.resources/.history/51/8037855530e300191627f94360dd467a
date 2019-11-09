@@ -1,0 +1,7 @@
+package test_930;
+public class TimerTest{
+    public static void main(String[] args){
+        Timer timer=new Timer();
+        MyTimerTask myTask=new MyTimerTask(¡°TimerTask 1¡±);
+        timer.schedule(myTask,2000L,1000L);
+    }

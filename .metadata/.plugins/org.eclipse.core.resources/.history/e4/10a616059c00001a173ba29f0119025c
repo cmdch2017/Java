@@ -1,0 +1,23 @@
+package test_116;
+
+public class MyRunnable implements Runnable{
+    private String name="a";
+ 
+    public void run() {
+        for(int i=0;i<10;i++){
+            System.out.println(Thread.currentThread().getName()+" "+i);
+        }
+    }
+ 
+    public MyRunnable(String name) {
+        super();
+        this.name = name;
+    }
+ 
+    public static void main(String[] args) {
+        MyRunnable mr=new MyRunnable("MyRunnable");
+        new Thread(mr,"Thread1").start();
+        new Thread(mr,"Thread2").start();
+        new Thread(mr,"Thread3").start();
+    }
+}

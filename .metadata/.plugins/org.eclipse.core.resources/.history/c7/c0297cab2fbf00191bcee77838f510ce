@@ -1,0 +1,41 @@
+package shortest;
+
+public class Solution {
+	public static void main(String args[]) {
+	int [][] rou=new int[10][10] ;
+	int n=3;//假设顶点个数3个，这里偷懒直接写有3个就不键盘输入了
+	int inf=10000;//假设为无限大的数
+	//初始化
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		rou[i][j]=inf;
+		if(i==j)
+			rou[i][i]=0;
+	}
+}
+//这里咱们假设三个顶点三条边，这里偷懒直接写就不键盘输入了
+//rou[1][2]=6表示1->2距离6以此类推
+rou[1][2]=6;
+rou[2][3]=8;
+rou[3][1]=7;
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		System.out.println(rou[i][j]);
+	}
+	}
+for(int k=1;k<=n;k++) {
+	for(int i=1;i<=n;i++) {
+		for(int j=1;j<=n;j++) {
+			if(rou[i][j]>rou[i][k]+rou[k][j]) {
+				rou[i][j]=rou[i][k]+rou[k][j];
+			}
+		}
+	}
+}
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		System.out.printf("rou[i][j] ");
+	}
+	}
+	}
+}

@@ -1,0 +1,79 @@
+package shortest;
+
+public class Solution {
+	//warshell o(n^3)
+	/*public static void main(String args[]) {
+	int [][] rou=new int[10][10] ;
+	int n=3;//假设顶点个数3个，这里偷懒直接写有3个就不键盘输入了
+	int inf=10000;//假设为无限大的数
+	//初始化
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		rou[i][j]=inf;
+		if(i==j)
+			rou[i][i]=0;
+	}
+}
+//这里咱们假设三个顶点三条边，这里偷懒直接写就不键盘输入了
+//rou[1][2]=6表示1->2距离6以此类推
+rou[1][2]=6;
+rou[2][3]=8;
+rou[1][3]=7;
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		System.out.printf("%d ",rou[i][j]);
+	}
+	System.out.println( );
+	}
+System.out.println( );
+//之前用c语言写过这个代码，思路就是首先不看k这一层，ij层就是如果rou[i][j]小就更新
+ //k这一层循环代表每次更新一个新的结点k使得rou[i][j]可以比较
+for(int k=1;k<=n;k++) {
+	for(int i=1;i<=n;i++) {
+		for(int j=1;j<=n;j++) {
+			if(rou[i][j]>rou[i][k]+rou[k][j]) {
+				rou[i][j]=rou[i][k]+rou[k][j];
+			}
+		}
+	}
+}
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		System.out.printf("%d ",rou[i][j]);
+	}
+	System.out.println( );
+	}
+	}
+	*/
+	//执行上述代码的时候发现至少有一个可以改进的地方就是首先作为起始点rou[i][j]的i能不能恒为1，
+	//也就说只从这个源点1和其他各点进行比较，更新最短路径，其次能不能降维成一维数组
+	//接下来的改进就是著名的迪杰斯特拉算法和bellman解决负权变
+//首先介绍bellman算法，查阅资料可以得出bellman
+//输入顶点及边的权值，这里假设5顶点5条边，具体看mspaint上画的图
+public static void main(String args[]) {
+int[] dis=new int[10];
+int[] u=new int[10];
+int[] v=new int[10];
+int[] w=new int[10];
+int n=5,m=5;
+	u[1]=2;v[1]=3;w[1]=2;
+	u[2]=1;v[2]=2;w[2]=-3;
+	u[3]=1;v[3]=5;w[3]=5;
+	u[4]=4;v[4]=5;w[4]=2;
+	u[5]=3;v[5]=4;w[5]=3;
+	int inf=10000;
+	for(int i=1;i<=n;i++) {
+		dis[i]=inf;
+	}
+	dis[1]=0;
+//核心代码
+	for(int k=1;k<=n-1;k++)//去掉自己这个顶点
+		for(int i=1;i<=m;i++)//内循环m条边，对每条边修改
+			if(dis[v[i]]>dis[u[i]]+w[i])//顶点u[i]到顶点v[i]这条边权值为w[i]
+				dis[v[i]]=dis[u[i]]+w[i];
+//打印
+	for(int i=1;i<=n;i++) {
+	System.out.println(dis[i]);
+}
+}
+}

@@ -1,0 +1,34 @@
+package test_119;
+import java.util.Arrays;
+public class Solution2 {
+	public static void main(String[] args) {
+	String a="They are students."; //j控制
+	String b="They";//i控制
+	char[] array=a.toCharArray();
+	char[] delete=b.toCharArray();
+	for(int i=0;i<delete.length;i++) {
+		for(int j=i;j<array.length;j++) {
+			if(delete[i]==array[j]) {
+				move(array,i);
+				break;
+			}
+		}
+	}
+	char[] array3= {'a','b','c','d','e','f'};
+	move(array3,4);
+	System.out.println(array3);
+}
+
+	public static void move(char[] array, int i) {
+		// TODO 自动生成的方法存根
+		if(i==array.length-1) {
+			array[i]=0;
+			return;
+		}
+		for(int index=i;index<array.length-1;index++) {
+			array[index]=array[index+1];
+			array[index+1]=0;
+		}
+	}
+}
+

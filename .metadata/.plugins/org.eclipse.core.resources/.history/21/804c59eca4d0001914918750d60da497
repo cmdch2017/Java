@@ -1,0 +1,43 @@
+package test_96;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+public class Solution {
+	Map<String,Integer> count(String[] words){
+		Map<String,Integer> map=new HashMap<>();
+		for(String n:words)
+		map.put(n,map.getOrDefault(n, 0)+1);
+		return map;
+		
+	}
+	public List<String> subdomainVisits(String[] cpdomains){
+		for(String ai:cpdomains) {
+	    	String[] t=ai.split(" ");
+	    	int n=Integer.valueOf(t[0]);
+	    	String domain=t[1];
+	    	
+	    	String[] u=domain.split("\\.");
+	    	for(int i=0;i<u.length;i++) {
+	    		String[] sub=Arrays.copyOfRange(u, i, u.length);
+	    		System.out.println(Arrays.toString(sub));
+	    	}
+	    }
+
+	}
+	public static void main(String[] args) {
+    /*
+	String s="900 google.mail.com";
+    String[] t=s.split(" ");
+    for(String a:t) {
+    	System.out.println(a);
+    }
+    int n=Integer.valueOf(t[0]);
+   
+    String[] v= {"google","com"};
+    String w=String.join(".", v);
+    //System.out.println(w);*/
+		
+	}
+}

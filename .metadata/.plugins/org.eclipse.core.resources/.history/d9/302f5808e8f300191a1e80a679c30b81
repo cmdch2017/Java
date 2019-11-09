@@ -1,0 +1,198 @@
+package test_1021;
+
+package mergesort;  
+
+import java.io.BufferedReader;  
+import java.io.BufferedWriter;  
+import java.io.FileReader;  
+import java.io.FileWriter;  
+import java.util.Arrays;  
+import java.util.Comparator;  
+import java.util.Date;  
+  
+/** 
+ * 生成一个具有10,000,000个记录的文本文件，其中每个记录由100个字节组成。实验只考虑记录的一个属性A，假定A为整数类型。 
+ * 记录在block上封装时，采用non-spanned方式，即块上小于一个记录的空间不使用。Block的大小可在自己的操作系统上查看，xp一般为4096 bytes。 
+ * 在内存分配50M字节的空间用于外部merge-sort。 
+ *  
+ * @author GT 2012-10-16 
+ * 
+ */  
+public class MergeSort {  
+    private int size = 10000000;//总记录数10000000  
+    private int sizePerBlock = 40;//由于磁盘上每个block大小是4KB,每条记录大小为100B,所以每个block上记录条数为40  
+    private int sizePerMemory = 500000;//分配50M内存进行内存排序,每个记录大小100B，所以大概每次排序50W条记录,这里取个整数500000  
+    private int fileSize = size/sizePerMemory;//归并生成的小文件数   20  
+    private int blockSize = (size%sizePerBlock)==0?(size/sizePerBlock):(size/sizePerBlock)+1; //总的块数250000  
+    private int blockSizePerFile = (sizePerMemory%sizePerBlock)==0?(sizePerMemory/sizePerBlock):(sizePerMemory/sizePerBlock)+1; //每个小文件中的块数12500  
+    private int charBufferSizeOfReader = 4096; //第二阶段的排序中每个子列表使用一个block大小的缓冲区  
+    private int charBufferSizeOfWriter = 41943040; //第二阶段的排序中输出使用的缓冲区大小40M  
+    private String fileDirectory = "F:\\record3\\";  
+    private String recordFile = fileDirectory+"record.txt";  
+      
+      
+    private String sortedRecordFile = fileDirectory+"sorted_record.txt";  
+      
+    public void creat() throws Exception{  
+        long start = new Date().getTime();  
+        BufferedWriter out = new BufferedWriter(new FileWriter(recordFile));  
+        for(int j = 0;j<blockSize;j++){  
+            for(int i =0;i<sizePerBlock;i++){  
+                out.write(new Record().getRecordString());  
+                out.newLine();  
+            }  
+            out.write(new char[94]);//填充94个byte  
+            out.newLine();//占两个byte  
+        }  
+      
+        out.close();  
+        long end = new Date().getTime();  
+        System.out.println("生成数据耗时 :"+(end - start)+"ms");  
+          
+    }  
+      
+    public void read() throws Exception{  
+        BufferedReader in = new BufferedReader( new FileReader(recordFile));  
+        String line;  
+          
+        for(int j = 0;j<blockSize;j++){  
+            for(int i =0;i<sizePerBlock;i++){  
+                line = in.readLine();  
+                Record r = new Record(line);  
+                System.out.println(r.getB());  
+            }  
+            in.readLine();  
+        }  
+        in.close();  
+          
+    }  
+      
+    Comparator<Record> comparator = new Comparator<Record>(){  
+        public int compare(Record r1,Record r2)  
+        {  
+            if(r1.getA()>=r2.getA()) return 1;  
+            else return 0;  
+        }  
+    };  
+  
+    public void memorySort() throws Exception{  
+        long start = new Date().getTime();  
+        BufferedReader in = new BufferedReader( new FileReader(recordFile));  
+          
+        String line;  
+        for(int k =0;k<fileSize;k++){//20  
+            Record records[] =  new Record[sizePerMemory];  
+            BufferedWriter out = new BufferedWriter(new FileWriter(fileDirectory+"record_"+k+".txt"));  
+            for(int j = 0;j<blockSizePerFile;j++){//12500  
+                for(int i =0;i<sizePerBlock;i++){//40  
+                    line = in.readLine();  
+                    records[j*sizePerBlock+i] =new Record(line);  
+                }  
+                in.readLine();  
+            }  
+            Arrays.sort(records,comparator);//主存排序  
+              
+            for(int j = 0;j<blockSizePerFile;j++){//12500  
+                for(int i =0;i<sizePerBlock;i++){//40  
+                    out.write(records[j*sizePerBlock+i].toString());  
+                    out.newLine();  
+                }  
+                out.write(new char[94]);//填充94个byte  
+                out.newLine();//占两个byte  
+            }  
+            out.close();  
+        }  
+        in.close();  
+        long end = new Date().getTime();  
+        System.out.println("内存排序耗时 :"+(end - start)+"ms");  
+    }  
+      
+    public void mergeSort() throws Exception{  
+        long start = new Date().getTime();  
+        BufferedWriter out = new BufferedWriter(new FileWriter(sortedRecordFile),charBufferSizeOfWriter);  
+        BufferedReader in [] = new BufferedReader[fileSize];  
+        for(int i =0;i<fileSize;i++){  
+            in[i] = new BufferedReader( new FileReader(fileDirectory+"record_"+i+".txt"),charBufferSizeOfReader);  
+        }  
+        Record rs[] = new Record[fileSize];  
+        Boolean finish [] = new Boolean[fileSize];  
+        for(int i =0;i<fileSize;i++) {  
+            rs[i]=new Record(in[i].readLine());  
+            finish[i]= false;  
+        }  
+        Record min;  
+        String line;  
+        int finishCount = 0;  
+        int count = 0;  
+        while(true){  
+              
+            int firstFalse = 0;//找到第一个没有写完的文件序列值  
+            for(int i=0;i<fileSize;i++){  
+                if(finish[i]==true)  
+                    firstFalse =i+1;  
+                else  
+                    break;  
+            }  
+            if(firstFalse>=fileSize) break;  
+            if(finishCount>=fileSize) break;  
+            min = rs[firstFalse];  
+            int j =firstFalse;  
+              
+            for(int i =firstFalse+1;i<fileSize;i++){  
+                if(!finish[i]&&(rs[i].getA()<min.getA())){  
+                    min = rs[i];  
+                    j = i;  
+                }  
+            }  
+            if((count!=0)&&(count%sizePerBlock==0)){  
+                out.write(new char[94]);//填充94个byte  
+                out.newLine();//占两个byte  
+            }  
+            out.write(min.toString());  
+            out.newLine();  
+              
+              
+            if(!finish[j]){  
+                line = in[j].readLine();  
+                if(line!=null){  
+                    if("".equals(line.trim()))  
+                    {  
+                        line = in[j].readLine();  
+                        if(line==null){  
+                            finish[j] = true;  
+                            finishCount++;  
+                        }  
+                    }else {  
+                        rs[j]= new Record(line);  
+                    }  
+                }else {  
+                    finish[j] = true;  
+                    finishCount++;  
+                }  
+            }  
+            count++;  
+        }  
+          
+        for(int i =0;i<fileSize;i++){  
+            in[i].close();  
+        }  
+        out.close();  
+          
+        long end = new Date().getTime();  
+        System.out.println("外存排序耗时 :"+(end - start)+"ms");    
+    }  
+      
+    public static void main(String [] args) throws Exception{  
+  
+//      long start = new Date().getTime();  
+        MergeSort ms = new MergeSort();  
+//      ms.creat();  
+//      ms.read();  
+//      ms.memorySort();  
+        ms.mergeSort();  
+          
+//      long end = new Date().getTime();  
+//      System.out.println("the time is :"+(end - start)+"ms");  
+  
+    }  
+}  

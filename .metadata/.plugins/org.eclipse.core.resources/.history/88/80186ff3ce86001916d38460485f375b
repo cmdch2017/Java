@@ -1,0 +1,38 @@
+package test_64;
+class Node{
+ int val;
+	public Node next;
+	Node(int val){
+		this.val=val;
+	}
+}
+
+public class Arraylist {
+public static Node pushFront(Node head,int val) {
+	Node node=new Node(val);
+	node.next=head;
+	return node;
+}
+public static Node popBack(Node head) {
+	if(head==null) return null;
+	Node p=head;
+	if(p.next==null) return null;
+	else{
+		while(p.next.next!=null) {
+			p=p.next;//ÕÒµ½Ä©Î²½áµã
+		}
+		p.next=null;
+		}
+	return head;
+}
+public static void main(String[] args) {
+	Node n1=new Node(6);
+	Node n2=new Node(5);
+	Node n3=new Node(4);
+	Node head=n1;
+	n1.next=n2;
+	n2.next=n3;
+	head=popBack(head);
+}
+}
+

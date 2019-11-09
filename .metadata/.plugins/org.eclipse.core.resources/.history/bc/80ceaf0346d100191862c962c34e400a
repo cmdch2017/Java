@@ -1,0 +1,32 @@
+package test97;
+import java.util.*;
+public class Solution {
+public static class StringComparator implements Comparator<String>{
+	@Override
+	public int compare(String o1, String o2) {
+		// TODO 自动生成的方法存根
+		return o1.compareTo(o2);
+	}
+	
+}
+public List<String> topKFrequent(String[] words,int k){
+//首先用map保存一一对应关系，建一个方法实现
+	Map<String,Integer> map=count(words);
+//反转map的对应关系,建一个方法实现
+	Map<Integer,String> map2=remap(map);
+//假设完成了第一第二步，接下来就是选取k个元素
+	//那么问题在于首先反转map时没有按照属性key依次排序
+	//key排序后，还有题目要求按照字母顺序在进行排序，所以排序优先级是先比较key，在比较value首字母
+	Set<Integer> set=map2.keySet();
+	int[] counts=new int[set.size()];
+	int i=0;//设定一个变量，已存储（名单）i个元素
+	for(int n:set) {
+		counts[i++]=n;
+	}
+	//排序数组首先按照key属性排序
+	Arrays.sort(counts);
+	return null;
+}
+}
+
+	

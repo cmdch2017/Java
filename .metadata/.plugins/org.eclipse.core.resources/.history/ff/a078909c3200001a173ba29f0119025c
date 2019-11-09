@@ -1,0 +1,31 @@
+package test_116;
+
+public class Solution {
+	public static void main(String[] args) {
+		String A="aba";
+		String B="b";
+		StringBuilder a=new StringBuilder(A);
+		StringBuilder b=new StringBuilder(B);
+		for(int i=0;i<a.length()+1;i++) {
+		StringBuilder c=a.insert(i, b);
+		if(backtrace(c.toString())) {
+		System.out.println(c.toString());
+		break;
+		}
+        a.delete(i, i+1);
+		}
+}
+
+	private static boolean backtrace(String string) {
+		// TODO 自动生成的方法存根
+		char[] array=string.toCharArray();
+		StringBuilder a=new StringBuilder();
+		for(int i=array.length;i>0;i++) {
+			a.append(i);
+		}
+		System.out.println(a);
+		return false;
+	}
+
+
+}

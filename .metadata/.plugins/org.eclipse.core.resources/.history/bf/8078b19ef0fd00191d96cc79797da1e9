@@ -1,0 +1,77 @@
+package test_113;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+class Solution {
+    public List<Integer> pancakeSort(int[] A) {
+    	List<Integer> list=new ArrayList<>();
+    	int[] array=Arrays.copyOf(A, A.length);
+    	int[] temp=Arrays.copyOf(A, A.length);
+    	Arrays.sort(temp);
+    	boolean flag=compare(array,temp);
+        if(flag) {
+        	return list;
+        }
+		int val=temp.length;
+		while(val>2) {
+		//大的数字找到下标位置，交换到第一位
+			//放在最后一个未排序位置
+			System.out.println(temp[val-1]);
+		int key=Arrays.binarySearch(array,temp[val-1]);
+		System.out.println(key);
+		if(key<0) return list;
+		if(key!=val) {
+		reverse(array,key);
+		list.add(key);
+        reverse(array,val);
+        list.add(val);
+		}
+		val--;
+		}
+		reverse(array,2); 
+		list.add(2);
+    	return list;
+    }
+
+	private boolean compare(int[] array, int[] temp) {
+	        for(int i=0;i<array.length;i++) {
+	        	if(array[i]!=temp[i]) {
+	        		return false;
+	        	}
+	        }
+		return true;
+		// TODO 自动生成的方法存根
+	}
+
+	private void reverse(int[] array, int key) {
+		if(key>array.length) return;
+		if(key==1) return;
+		// TODO 自动生成的方法存根
+		int front=0,last=key-1;
+		while(front<last) {
+			swap(array,front,last);
+			front++;
+			last--;
+		}
+	}
+
+	private void swap(int[] array, int front, int last) {
+		// TODO 自动生成的方法存根
+		int key=array[front];
+		array[front]=array[last];
+		array[last]=key;
+	}
+	
+	public static void main(String[] args) {
+		List<Integer> l1=new ArrayList<>();
+		int[] array2= {6,2,3,4,5,1};
+		Solution x=new Solution();
+		l1=x.pancakeSort(array2);
+		if(l1!=null) {
+		for(int i:l1) {
+			System.out.println(i);
+		}
+		}
+	}
+}

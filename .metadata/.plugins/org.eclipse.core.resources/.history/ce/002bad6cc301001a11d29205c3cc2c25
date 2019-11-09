@@ -1,0 +1,23 @@
+package Consumer;
+
+import java.util.Stack;
+
+public class Solution {
+	public static void main(String[] args) {
+		Stack stack=new Stack();
+		Thread producer=new Thread(()->{
+			char c;
+			for(int i=0;i<10;i++) {
+				c=(char)(Math.random()*26+'A');
+				stack.push(c);
+				System.out.println("生产："+c);
+				try {
+					Thread.sleep((int)(Math.random()*1000));
+				} catch (InterruptedException e) {
+					// TODO 自动生成的 catch 块
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+}

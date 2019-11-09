@@ -1,0 +1,90 @@
+package test97;
+import java.util.*;
+public class Solution {
+public static class StringComparator implements Comparator<String>{
+	@Override
+	public int compare(String o1, String o2) {
+		// TODO 自动生成的方法存根
+		return o1.compareTo(o2);
+	}
+	
+}
+
+Map<String, Integer> count(String[] words) {
+    Map<String, Integer> wordToCount = new HashMap<>();
+    for (String word : words) {
+        int c = wordToCount.getOrDefault(word, 0);
+        wordToCount.put(word, c + 1);
+    }
+
+    return wordToCount;
+}
+
+Map<Integer, List<String>> remap(Map<String, Integer> wordToCount) {
+    Map<Integer, List<String>> countToWordList = new HashMap<>();
+    for (Map.Entry<String, Integer> e : wordToCount.entrySet()) {
+        String word = e.getKey();
+        int count = e.getValue();
+
+        List<String> wordList = countToWordList.get(count);
+        if (wordList == null) {
+            wordList = new ArrayList<>();
+            countToWordList.put(count, wordList);
+        }
+
+        wordList.add(word);
+    }
+
+    return countToWordList;
+}
+
+public List<String> topKFrequent(String[] words,int k){
+//首先用map保存一一对应关系，建一个方法实现
+	Map<String,Integer> map=count(words);
+//反转map的对应关系,建一个方法实现
+	Map<Integer, List<String>> map2=remap(map);
+//假设完成了第一第二步，接下来就是选取k个元素
+	//那么问题在于首先反转map时没有按照属性key依次排序
+	//key排序后，还有题目要求按照字母顺序在进行排序，所以排序优先级是先比较key，在比较value首字母
+	Set<Integer> set=map2.keySet();//先比较key属性，提取key属性
+	int[] counts=new int[set.size()];
+	int i=0;
+	for(int n:set) {
+		counts[i++]=n;
+	}
+	//排序数组（按照key属性排序）
+	Arrays.sort(counts);//1 2 3……
+	//特别要注意的是存放进入set以后不会有重复的元素，所以key值相等，排序也不会出现重复的数字
+
+	//接下来按字母排序
+	List<String> result=new ArrayList<>();
+	int j=0;//已录取名单
+	int index=counts.length-1;//从后向前取元素
+	Comparator<String> comparator=new StringComparator();
+	while(j<k) {
+		int c=counts[index--];
+		List<String> wordlist=map2.get(c);//获取相同key值的所有value
+		wordlist.sort(comparator);//value属性按字母进行排序
+		if(map2.size()<k-j) {
+			result.addAll(wordlist);
+			j+=wordlist.size();
+		}
+		//这一层（key层）超出总数
+		else {
+			result.addAll(wordlist.subList(0, k-j));
+			j=k;//跳出循环
+		}
+	}
+	return result;
+}
+public static void main(String[] args) {
+	String[] words= {
+			"i","love","a",
+			"i","love","b"
+	};
+	List<String> l=new Solution().topKFrequent(words, 3);
+	System.out.println(l);
+}
+}
+
+	

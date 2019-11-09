@@ -1,0 +1,12 @@
+package test_96;
+
+import java.util.List;
+public class Solution {
+	public static void main(String[] args) {
+    String s="900 google.mail.com";
+    String[] t=s.split(" ");
+    System.out.println(t[0]);
+    System.out.println(t[1]);
+    int n=Integer.valueOf(t[0]);
+	}
+}

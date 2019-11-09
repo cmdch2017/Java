@@ -1,0 +1,80 @@
+package test_823;
+
+import java.awt.List;
+
+class Node{
+	char val;
+	Node left=null;
+	Node right=null;
+	Node(char val){
+		this.val=val;
+	}
+	@Override
+	public String toString() {
+		//return String.format("%cµÄ×ó±ßÊÇ%cÓÒ±ßÊÇ%c",val,left.val,right.val);
+		return "Node [val=" + val + ", left=" + left + ", right=" + right + "]";
+	}
+	
+}
+
+public class Tree {
+Node node=null;
+public static Node buildTree() {
+	Node a=new Node ('A');
+	Node b=new Node ('B');
+	Node c=new Node ('C');
+	Node d=new Node ('D');
+	Node m=new Node ('M');
+	Node n=new Node ('N');
+	a.left=b;
+	a.right=c;
+	b.left=d;
+	b.right=m;
+	m.left=n;
+	return a;	
+}
+public static void preOrderTraversal(Node root) {
+	if(root==null) {
+		return;
+	}
+	System.out.println(root.val);
+	preOrderTraversal(root.left);
+	preOrderTraversal(root.right);
+}
+public static void inOrderTraversal(Node root) {
+	if(root==null) {
+		return;
+	}
+	preOrderTraversal(root.left);
+	System.out.println(root.val);
+	preOrderTraversal(root.right);
+}
+public static void postOrderTraversal(Node root) {
+	if(root==null) {
+		return;
+	}
+	preOrderTraversal(root.left);
+	preOrderTraversal(root.right);
+	System.out.println(root.val);
+} 
+public  int test(int n) {
+	if (n == 1) {
+		return 1;
+	}
+	
+	int sum = 0;
+	test(n - 1);
+	sum += n;
+	return sum;
+}
+public static void main(String[] args) {
+	Tree l=new Tree();
+	System.out.println(l.test(10));
+	Node tree=buildTree();
+	preOrderTraversal(tree);
+	inOrderTraversal(tree);
+	//postOrderTraversal(tree);
+	System.out.println(small);
+	System.out.println(tree.toString());
+}
+}

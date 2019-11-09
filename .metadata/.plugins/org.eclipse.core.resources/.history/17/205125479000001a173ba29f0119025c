@@ -1,0 +1,14 @@
+package test_116;
+
+public class Sequence {
+	public static void main(String[] args) {
+	Runnable r=new Runnable() {
+		@Override
+		public void run() {
+			// TODO 自动生成的方法存根
+			System.out.println(1);
+		}
+	};
+	}
+	
+}

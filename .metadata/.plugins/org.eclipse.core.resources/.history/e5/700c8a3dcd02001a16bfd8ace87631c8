@@ -1,0 +1,28 @@
+package test_119;
+import java.util.Arrays;
+import java.util.Scanner;
+public class Mainw {
+	public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in)；
+	String a=sc.nextLine();
+	String b=sc.nextLine();//i控制
+	int count=0;
+	char[] array=a.toCharArray();
+	char[] array2=b.toCharArray();
+	for(int i=0;i<array2.length;i++) {
+		for(int k=i;k<array.length;k++) {
+			if(array2[i]==array[k]) {
+				//后面元素向前搬移
+				count++;
+				for(int j=k;j<array.length-1;j++) {
+					array[j]=array[j+1];
+			}
+		}
+	}
+	}
+	array=Arrays.copyOf(array, array.length-count);
+	String str=String.copyValueOf(array);
+	System.out.println(str.toString());
+	}
+}
+

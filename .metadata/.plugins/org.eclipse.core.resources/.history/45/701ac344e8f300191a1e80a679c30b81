@@ -1,0 +1,10 @@
+package test_1021;
+
+public class Record {
+
+	public char[] getRecordString() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+}

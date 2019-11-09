@@ -1,0 +1,34 @@
+package test_116;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String A=sc.nextLine();
+		String B=sc.nextLine();
+		//String A="aba";
+		//String B="b";
+		StringBuilder a=new StringBuilder(A);
+		StringBuilder b=new StringBuilder(B);
+		int count=0;
+		for(int i=0;i<a.length()+1;i++) {
+		StringBuilder c=a.insert(i, b);
+		if(backtrace(c.toString())) {
+		count++;
+		}
+        a.delete(i, i+b.length());
+		}
+		System.out.println(count);
+}
+
+	private static boolean backtrace(String string) {
+		// TODO 自动生成的方法存根
+		char[] array=string.toCharArray();
+		StringBuilder c=new StringBuilder();
+		for(int i=array.length-1;i>=0;i--) {
+			c.append(array[i]);
+		}
+		return (c.toString()).equals(string);
+	}
+}

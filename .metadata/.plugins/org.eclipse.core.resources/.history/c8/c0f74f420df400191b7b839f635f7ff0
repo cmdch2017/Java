@@ -1,0 +1,303 @@
+package test_1021;
+
+ 
+
+import java.awt.Adjustable;
+
+import java.util.ArrayList;
+
+import java.util.Arrays;
+
+/* 
+
+
+
+*/
+
+import java.util.Iterator;
+
+/**
+
+ * @author xusy
+
+ *
+
+ */
+
+import java.util.List;
+
+public class LoserTree {
+
+	
+
+	//数据源，为叶子节点提供数据，iterator里的是有序的数据，从小到大
+
+	private Iterator<Integer>[] data;
+
+	
+
+	//总共有几个数据源
+
+	private int size;
+
+	
+
+	//叶子节点，数据源中具体的数据,一对一
+
+	private Integer[] leaves;
+
+	
+
+	//非叶子节点,记录叶子节点的下标, 根据节点的值可以定位到叶子节点所指向的数据（就是图里画的败者树）
+
+	//nodes[0]为最小值的索引
+
+	private int[] nodes;
+
+	
+
+	/**根据data，构建败者树
+
+	 * @param data  iterator里的是有序的数据，从小到大
+
+	 */
+
+	public LoserTree(List<Iterator<Integer>> data){
+
+		//因为iterator不能变成迭代器数组，只能变成迭代器列表
+
+		this.data=data.toArray(new Iterator[0]);
+
+		size=data.size();
+
+		leaves=new Integer[size];
+
+		nodes=new int[size];
+
+		
+
+		//为叶子节点，leaves数组赋值
+
+		for(int i=0;i<size;i++){
+
+			setLeavesValueFromData(i);
+
+		}
+
+		
+
+		//找到叶子节点中最小值的下标
+
+		int winner=0;
+
+		for(int i=1;i<size;i++){
+
+			//如果i位元素比winner位元素小
+
+			if(compareLeavesByIndex(i, winner)){
+
+				winner=i;
+
+			}
+
+		}
+
+		
+
+		// 非叶子节点全部初始化为最小值对应的叶子节点下标
+
+        Arrays.fill(nodes, winner);
+
+		
+
+        //从后向前依次调整非叶子节点
+
+        for(int i=size-1;i>=0;i--){
+
+        	adjust(i);
+
+        }
+
+		
+
+	}
+
+	
+
+	/**根据数据源data，设置leaves[i]的值，如果对应的data没有值了，就设置null
+
+	 * @param i 位置
+
+	 */
+
+	public void setLeavesValueFromData(int i){
+
+		Iterator<Integer> iterator=data[i];
+
+		if(iterator.hasNext()){
+
+			leaves[i]=iterator.next();
+
+		}
+
+		else{
+
+			leaves[i]=null;
+
+		}		
+
+	}
+
+	
+
+	/**比较leaves数组中位置为index1的元素是否小于index2的元素（因为是要得到小的）
+
+	 * @param index1
+
+	 * @param index2
+
+	 * @return 
+
+	 */
+
+	public boolean compareLeavesByIndex(int index1,int index2){
+
+		Integer value1=leaves[index1];
+
+		Integer value2=leaves[index2];
+
+		if(value1==null){
+
+			return false;
+
+		}
+
+		if(value2==null){
+
+			return true;
+
+		}
+
+		//当叶节点数据相等时比较分支索引是为了实现排序算法的稳定性
+
+		if(value1==value2){
+
+			return index1<index2;
+
+		}
+
+		if(value1<value2){
+
+			return true;
+
+		}
+
+		else{
+
+			return false;
+
+		}
+
+		
+
+	}
+
+	
+
+	
+
+	/**调整第index个叶子节点的值，在非叶子节点nodes（败者树）中的位置，最后nodes[0]为最小的节点
+
+	 * 具体调整过程为: 叶子节点和父节点比较, 败者（较大值）留在父节点位置, 胜者（较小值）继续和祖父节点比较，直至最终
+
+	 * @param index
+
+	 */
+
+	public void adjust(int index){
+
+		int parent=(index+size)/2;
+
+		//直到parent变成0
+
+		while (parent>0) {
+
+			//如果父节点小于当前值，败者为当前值，败者留在父亲节点，index变成父亲节点的值，相当于父亲节点与祖父节点继续比较
+
+			//如果父节点大于当前值，败者为父节点，父节点不变，继续与祖父节点比较
+
+			if(compareLeavesByIndex(nodes[parent], index)){
+
+				int temp=nodes[parent];
+
+				nodes[parent]=index;
+
+				index=temp;				
+
+			}
+
+			//祖父节点的位置
+
+			parent=parent/2;
+
+			//一套流程下来，index成为胜者，小的
+
+			//parent放置着败者，大的
+
+			//parent最后成为下一个比较的节点（祖父节点）
+
+		}
+
+		//跳出循环后，index成为最小的节点
+
+		nodes[0]=index;		
+
+	}
+
+	
+
+	
+
+	/**返回败者树中data，经过败者树，多路归并排序后的list
+
+	 * @return
+
+	 */
+
+	public List<Integer> mergeSort(){
+
+		List<Integer> list=new ArrayList<>();
+
+		Integer smallest=null;
+
+		while (true) {
+
+			//得到最小值
+
+			smallest=leaves[nodes[0]];
+
+			if(smallest==null){
+
+				break;
+
+			}			
+
+			list.add(smallest);
+
+			//由于leaves数组中的最小值，索引为nodes[0]的元素被拿走了，所以要重新读入一个
+
+			setLeavesValueFromData(nodes[0]);
+
+			// 根据新插入的叶子节点重新调整树
+
+			adjust(nodes[0]); 
+
+		}		
+
+		return list;
+
+	}
+
+	
+
+}

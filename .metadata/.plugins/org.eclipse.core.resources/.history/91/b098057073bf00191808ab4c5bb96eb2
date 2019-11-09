@@ -1,0 +1,37 @@
+package test815;
+class Node{
+	int val;
+	Node next;
+	Node(int val){
+		this.val=val;
+	}
+}
+public class review {
+public Node reverselist(Node head) {
+	Node pre=null;
+	Node next;
+	while(head!=null) {
+		next=head.next;
+		head.next=pre;
+		pre=head;
+		head=next;
+	}
+	
+	return pre;
+}
+public void display(Node head) {
+	for(Node cur=head;cur!=null;cur=cur.next) {
+		System.out.println(cur.val);
+	}
+}
+public static void main(String args[]) {
+	review list=new review();
+	Node n1=new Node(1);
+	Node n2=new Node(2);
+	Node n3=new Node(3);
+	n1.next=n3;
+	n3.next=n2;
+	Node head=list.reverselist(n1);
+	list.display(head);
+}
+}

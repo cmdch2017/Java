@@ -1,0 +1,12 @@
+package test117;
+
+public class Main {
+	public static void main(String[] args) {
+	int a=81;
+	int sum=0;
+	for(int i=a/3;i>0;i/=3) {
+		sum+=i;
+	}
+	System.out.println(sum);
+	}
+}

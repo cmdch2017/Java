@@ -1,0 +1,7 @@
+## this is db config file
+driver=com.mysql.jdbc.Driver
+url=jdbc:mysql://localhost:3306/test2
+user=root
+password=
+useSSL=false
+verifyServerCertificate=false

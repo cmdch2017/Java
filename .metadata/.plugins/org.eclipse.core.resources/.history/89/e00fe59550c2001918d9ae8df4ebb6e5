@@ -1,0 +1,26 @@
+package test_819;
+import java.util.ArrayList;
+import java.util.List;
+public class Main {
+	public List<List<Integer>> generate(int numRows) {
+	//List list=new List();List为接口不能实例化
+	  List<List<Integer>> list=new ArrayList<List<Integer>>();//大的顺序表中的顺序表
+	  for(int i=1;i<=numRows;i++) {
+		  List<Integer> nums=new ArrayList<Integer>();
+		  nums.add(1);
+		  for(int j=1;j<=i;j++) {
+			  int num=list.get(i-1).get(j-1)+list.get(i-1).get(j);
+			  nums.add(num);
+		  }
+		  nums.add(1);
+	  }
+	return list;
+	}
+	private static void printPascalsTriangle(Main s,int n) {
+		System.out.println(s.generate(n));
+	}
+    public static void main(String[] args) {
+    	Main l=new Main();
+    	printPascalsTriangle(l,10);
+}
+}

@@ -1,0 +1,25 @@
+package test_930;
+
+public class MyTimerTask extends TimerTask{
+    private String taskName;
+    public MyTimerTask(String taskName){
+        this.taskName=taskNae;
+    }
+    public String getTaskname(){
+        return taskName;
+    }
+    public void setTaskName(String taskName){
+        this.taskName=taskName;
+    }
+    public void run(){
+    System.out.println("当前执行的任务是"+taskName);
+    }
+}
+public class TimerTest{
+    public static void main(String[] args){
+        Timer timer=new Timer();
+        MyTimerTask myTask=new MyTimerTask(“TimerTask 1”);
+        timer.schedule(myTask,2000L,1000L);
+    }
+}
+

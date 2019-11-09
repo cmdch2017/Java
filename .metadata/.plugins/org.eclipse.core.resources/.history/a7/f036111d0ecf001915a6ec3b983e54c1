@@ -1,0 +1,14 @@
+package test_94;
+class Node{
+	public int val;
+	public Node next;
+	public Node random;
+	Node(int val,Node next,Node random){
+		this.val=val;
+		this.next=next;
+		this.random=random;
+	}
+}
+public class Copyset {
+
+}

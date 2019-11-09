@@ -1,0 +1,17 @@
+package test117;
+
+public class Main {
+	public static void main(String[] args) {
+	int a=4;
+	boolean zeroFlag=((a%3)==0);//divided
+	int sum=0;
+	for(int i=a/3;i>0;i/=3) {
+		sum+=i;
+	}
+	if(zeroFlag)
+		System.out.println(sum);
+	else {
+		System.out.println(sum+1);	
+	}
+	}
+}

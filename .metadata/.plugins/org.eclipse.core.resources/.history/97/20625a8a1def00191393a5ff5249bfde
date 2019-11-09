@@ -1,0 +1,21 @@
+package test_1014;
+
+public class Tester{
+ public String replaeSpace(String oldString) {
+	 StringBuilder newString=new StringBuilder();
+		for(String i:oldString.split(" ")) { 
+			newString.append(i+"%20");
+		}
+		String a=newString.substring(0, newString.length()-3);
+		return a;
+ }
+ public static void main(String[] args) {
+	 String oldString="We Are Happy";
+	 StringBuilder newString=new StringBuilder();
+			for(String i:oldString.split(" ")) { 
+				newString.append(i+"%20");
+			}
+		String a=newString.substring(0, newString.length()-3);
+			System.out.println(a);
+ }
+}

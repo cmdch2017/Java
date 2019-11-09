@@ -1,0 +1,20 @@
+package test117;
+
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	int a=sc.nextInt();
+	boolean zeroFlag=((a%3)==0);//divided
+	int sum=0;
+	for(int i=a/3;i>0;i/=3) {
+		sum+=i;
+	}
+	if(zeroFlag)
+		System.out.println(sum);
+	else {
+		System.out.println(sum+1);	
+	}
+	}
+}

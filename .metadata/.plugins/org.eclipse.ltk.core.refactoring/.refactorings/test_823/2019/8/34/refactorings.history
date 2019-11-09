@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;&apos; to &apos;test_823.MyCircularQueue&apos;&#x0D;&#x0A;- Original project: &apos;test_823&apos;&#x0D;&#x0A;- Destination element: &apos;test_823.MyCircularQueue&apos;&#x0D;&#x0A;- Original element: &apos;test_823.MyCircularQueue.deQueue()&apos;" description="Copy method" destination="/src&lt;test_823{MyCircularQueue.java[MyCircularQueue" element1="/src&lt;test_823{MyCircularQueue.java[MyCircularQueue~deQueue" flags="589830" id="org.eclipse.jdt.ui.copy" members="1" policy="org.eclipse.jdt.ui.copyMembers" stamp="1566525516337" version="1.0"/>
+</session>

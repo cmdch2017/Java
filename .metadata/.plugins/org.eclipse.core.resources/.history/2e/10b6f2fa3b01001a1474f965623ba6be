@@ -1,0 +1,9 @@
+package test117;
+
+public class AntiOrder {
+    public int count(int[] A, int n) {
+        // write code here
+        int key=7；
+        return key；
+    }
+}

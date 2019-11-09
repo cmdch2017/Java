@@ -1,0 +1,17 @@
+package test_1023;
+
+public class Demo15 {
+	//不能，静态方法存放在方法区，比普通方法少生成了this方法，
+	public static void main(String[] args) {
+		//不能对类型 Demo15 中的非静态方法 method1（）进行静态引用
+		method1();
+	}
+	public static void method1() {
+		method2();
+	}
+	public static void method2() {
+		//不能对非静态字段 c 进行静态引用
+		System.out.println(c.getRadius());
+	}
+	static Circle c=new Circle();
+}

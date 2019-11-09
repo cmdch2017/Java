@@ -1,0 +1,29 @@
+package test_1012;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+
+public class Solution {
+
+    public static void main(String[] args) {
+    	/*Scanner sc = new Scanner(System.in);
+        HashSet<String> set = new HashSet<>();
+        String name=sc.nextLine();
+        for(String i:name.split(" ")) {
+        	set.add(i);
+        }
+        System.out.println(set.size());*/
+    	HashSet<String> set=new HashSet<>();
+    	do {
+    		Scanner sc=new Scanner(System.in);
+    		String str=sc.nextLine();
+    		if(str.equals(" ")) {
+    			break;
+    		}
+    		set.add(str);
+    		System.out.println(set.size());
+    	}while(true);
+    	System.out.println("jump");
+}
+}

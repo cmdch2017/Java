@@ -1,0 +1,7 @@
+package test_1014;
+
+public class Tester{
+ public void replaeSpace() {
+	 
+ }
+}

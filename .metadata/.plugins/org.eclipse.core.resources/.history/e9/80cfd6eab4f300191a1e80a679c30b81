@@ -1,0 +1,27 @@
+package test_1021;
+class Base{
+	public void method() {
+		System.out.println("Base");
+	}
+}
+class Son extends Base{
+	public void method() {
+		System.out.println("son");
+		//super.method();
+	}
+	public static void a(){
+		System.out.println("a");
+	}
+	public Son() {
+		System.out.println("test");
+	}
+	public void methodB() {
+		System.out.println("Son B");
+	}
+}
+public class Solution {
+	public static void main(String[] args) {
+		Base base=new Son();
+		//base.method();
+	}
+}

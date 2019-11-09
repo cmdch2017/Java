@@ -1,0 +1,5 @@
+package com.a51work6.qq.server;
+
+public class UserDAO {
+
+}

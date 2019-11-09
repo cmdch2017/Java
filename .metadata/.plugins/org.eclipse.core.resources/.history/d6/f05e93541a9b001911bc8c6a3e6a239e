@@ -1,0 +1,5 @@
+package test630;
+
+public interface A {
+
+}

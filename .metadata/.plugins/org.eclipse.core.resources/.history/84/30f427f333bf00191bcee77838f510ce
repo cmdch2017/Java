@@ -1,0 +1,51 @@
+package shortest;
+
+public class Solution {
+	//warshell o(n^3)
+	/*public static void main(String args[]) {
+	int [][] rou=new int[10][10] ;
+	int n=3;//假设顶点个数3个，这里偷懒直接写有3个就不键盘输入了
+	int inf=10000;//假设为无限大的数
+	//初始化
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		rou[i][j]=inf;
+		if(i==j)
+			rou[i][i]=0;
+	}
+}
+//这里咱们假设三个顶点三条边，这里偷懒直接写就不键盘输入了
+//rou[1][2]=6表示1->2距离6以此类推
+rou[1][2]=6;
+rou[2][3]=8;
+rou[3][1]=7;
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		System.out.printf("%d ",rou[i][j]);
+	}
+	System.out.println( );
+	}
+System.out.println( );
+//之前用c语言写过这个代码，思路就是首先不看k这一层，ij层就是如果rou[i][j]小就更新
+ //k这一层循环代表每次更新一个新的结点k使得rou[i][j]可以比较
+for(int k=1;k<=n;k++) {
+	for(int i=1;i<=n;i++) {
+		for(int j=1;j<=n;j++) {
+			if(rou[i][j]>rou[i][k]+rou[k][j]) {
+				rou[i][j]=rou[i][k]+rou[k][j];
+			}
+		}
+	}
+}
+for(int i=1;i<=n;i++) {
+	for(int j=1;j<=n;j++) {
+		System.out.printf("%d ",rou[i][j]);
+	}
+	System.out.println( );
+	}
+	}
+	*/
+	//执行上述代码的时候发现至少有一个可以改进的地方就是首先作为起始点rou[i][j]的i能不能恒为1，
+	//也就说只从这个源点和其他各点进行比较
+	//
+}

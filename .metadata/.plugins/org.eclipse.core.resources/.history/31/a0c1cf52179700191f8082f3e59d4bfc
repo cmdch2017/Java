@@ -1,0 +1,14 @@
+package test_618;
+
+public class Mouse implements USB {
+
+	public void turnOn() {
+		// TODO 自动生成的方法存根
+		System.out.println("鼠标启动了");
+	}
+	public void turnOff() {
+		// TODO 自动生成的方法存根
+		System.out.println("鼠标关闭了");
+	}
+
+}

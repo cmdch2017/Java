@@ -1,0 +1,24 @@
+package test_116;
+
+public class Solution {
+	public static void main(String[] args) {
+		MyThread t=new MyThread();
+		t.start();
+		MyRunner l=new MyRunner();
+		Thread t2=new Thread(l);
+		t2.start();
+		while(true) {
+			
+		}
+	}
+}
+
+class MyThread extends Thread{
+
+	@Override
+	public void run() {
+		// TODO 自动生成的方法存根
+		super.run();
+	}
+	
+}

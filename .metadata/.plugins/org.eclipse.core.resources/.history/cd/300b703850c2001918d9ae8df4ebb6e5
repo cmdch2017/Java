@@ -1,0 +1,10 @@
+package test_819;
+import java.util.ArrayList;
+public class Main {
+public static void main(String[] args) {
+ArrayList<String> list=new ArrayList<String>();
+list.add("S");
+list.addAll(list);
+list.add("R");
+System.out.println(list);}
+}

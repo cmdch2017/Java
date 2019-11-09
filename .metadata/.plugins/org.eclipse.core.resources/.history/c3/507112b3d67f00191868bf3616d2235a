@@ -1,0 +1,23 @@
+package stringtest;
+
+public class Stringtest {
+public static void main(String[] args) {
+	String str="nbaernbatnbaynbauinbaopnba";
+	String key="nba";
+	int count=getKeyStringCount(str,key);
+	System.out.println("count="+count);
+}
+public static int getKeyStringCount(String str,String key) {
+	int count=0;
+	if(!str.contains(key)) {
+		return count;
+	}
+	int index=0;
+	while((index=str.indexOf(key))!=-1) {
+		// "unhappy".substring(2) returns "happy"
+		str=str.substring(index+key.length());
+		count++;
+	}
+	return count++;
+}
+}

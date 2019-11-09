@@ -1,0 +1,18 @@
+package test_1023;
+
+public class Demo18 {
+	public static void main(String[] args) {
+		int[] a= {1,2};
+		swap(1,2);
+		System.out.println(a[0]+" "+a[1]);
+	}
+//1.a[0]=2 a[1]=1
+//2.a[0]=2 a[1]=1
+
+	private static void swap(int n1, int n2) {
+		// TODO 自动生成的方法存根
+		int temp=n1;
+		n1=n2;
+		n2=temp;
+	}
+}

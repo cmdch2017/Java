@@ -1,0 +1,14 @@
+package test_1021;
+
+public class Record {
+
+	public Record(String line) {
+		// TODO 自动生成的构造函数存根
+	}
+
+	public char[] getRecordString() {
+		// TODO 自动生成的方法存根
+		return null;
+	}
+
+}

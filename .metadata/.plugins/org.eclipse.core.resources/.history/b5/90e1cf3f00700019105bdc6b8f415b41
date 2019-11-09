@@ -1,0 +1,6 @@
+public class Bike {
+public static void main() {
+	Bike bike1=new Bike();
+	Bike bike2=new Bike();
+}
+}

@@ -1,0 +1,4 @@
+package test_819;
+
+public interface Main {
+}

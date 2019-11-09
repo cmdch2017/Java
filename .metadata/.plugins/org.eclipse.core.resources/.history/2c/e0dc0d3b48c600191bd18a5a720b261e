@@ -1,0 +1,70 @@
+package test_824;
+
+import java.util.Arrays;
+import java.util.List;
+
+class TreeNode {
+     int val;
+     TreeNode left;
+     TreeNode right;
+     TreeNode(int x) { val = x; }
+ }
+public class SameTree {
+public boolean isSameTree(TreeNode p,TreeNode q) {
+if(p==null&&q==null) return true;
+if(p==null||q==null) return false;
+return (p.val==q.val&&isSameTree(p.left,q.left)&&isSameTree(p.right,q.right));
+}
+boolean search(TreeNode root,TreeNode t) {
+	//子树问题，首先找到子树t的头结点使得（root.val==t.val）
+	//判断是否包含有树的部分
+	if(root==null) return false;
+	if(root.val==t.val) {
+		if(isSameTree(root,t))
+			return true;
+	}
+	if(search(root.left,t))return true;
+	return search(root.right,t);
+}
+
+static TreeNode buildTree(List<Character> preorder,List <Character> inorder) {
+	if(preorder.size()==0) {
+		return null;
+	}
+	char rootValue=preorder.get(0);
+	int leftCount=inorder.indexOf(rootValue);
+	TreeNode root=new TreeNode(rootValue);
+	List<Character> leftPreorder=preorder.subList(1, 1+leftCount);
+	List<Character> leftInorder=inorder.subList(0, leftCount);
+	TreeNode left=buildTree(leftPreorder,leftInorder);
+	List<Character> rightPreorder=preorder.subList(1+leftCount,preorder.size());
+	List<Character> rightInorder=inorder.subList(leftCount+1, inorder.size());
+	TreeNode right=buildTree(rightPreorder,rightInorder);
+	root.left=left;root.right=right;
+	return root;
+}
+static TreeNode buildTree2(List<Character> lastorder,List <Character> inorder) {
+	if(lastorder.size()==0) {
+		return null;
+	}
+	char rootValue=lastorder.get(0);
+	int leftcount=inorder.indexOf(rootValue);
+	//int rightCount=preorder.size()-leftCount-1;
+	TreeNode root=new TreeNode(rootValue);
+	List<Character> leftlastorder=lastorder.subList(0, lastorder.indexOf(root));
+	List<Character> leftinorder=inorder.subList( inorder.indexOf(root),inorder.size());
+	List<Character> rightlastorder=lastorder.subList(0, lastorder.indexOf(root));
+	List<Character> rightinorder=inorder.subList(0, inorder.indexOf(root));
+	return null;
+}
+public boolean isMirror(TreeNode p,TreeNode q) {
+	if(p==null&&q==null) return true;
+	if(p==null||q==null) return false;
+	return (p.val==q.val&&isMirror(p.left,q.right)&&isMirror(p.right,q.left));
+}
+public static void main(String[] args) {
+	List<Character> preorder=Arrays.asList('A','B');
+	List<Character> inorder=Arrays.asList('A','B');
+	TreeNode root=buildTree(preorder,inorder);
+}
+}

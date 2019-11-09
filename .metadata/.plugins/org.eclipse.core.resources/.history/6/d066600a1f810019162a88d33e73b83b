@@ -1,0 +1,53 @@
+package notepad;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+public class Notepad {
+private static String filePath;
+private static String message="";
+public static void main(String[] args) {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("1.新建文件 2.打开文件 3.修改文件 4.保存 5.退出");
+	while(true) {
+		System.out.print("请输入操作命令：");
+		int command=sc.nextInt();
+		switch(command) {
+		case 1:createFile();
+		break;
+		case 2:openFile();
+		break;
+		case 3:editFile();
+		break;
+		case 4:saveFile();
+		break;
+		case 5:exit();
+		break;
+		default:
+			System.out.println("您输入的指令错误");
+			break;
+		}
+	}
+}
+private static void openFile() throws Exception{
+	message="";
+	Scanner sc=new Scanner(System.in);
+	System.out.print("请输入打开文件的位置：");
+	filePath=sc.next();//获取打开文件的路径
+	//控制只能输入txt格式的文件路径
+	sc.close();
+	if(filePath!=null&&filePath.endsWith(".txt")) {
+		System.out.print("请选择文本文件！");
+		return;
+	}
+}
+private static void editFile() {
+	
+}
+private static void saveFile() throws IOException {
+	
+}
+private static void exit() {
+	
+}
+}

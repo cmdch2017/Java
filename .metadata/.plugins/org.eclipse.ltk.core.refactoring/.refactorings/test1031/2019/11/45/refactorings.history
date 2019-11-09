@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;SelectReview.java&apos; to &apos;QQ/src/com.a51work6.qq.server&apos;&#x0D;&#x0A;- Original project: &apos;test1031&apos;&#x0D;&#x0A;- Destination element: &apos;QQ/src/com.a51work6.qq.server&apos;&#x0D;&#x0A;- Original element: &apos;test1031.SelectReview.java&apos;" description="Copy compilation unit" destination="=QQ/src&lt;com.a51work6.qq.server" element1="/src&lt;test1031{SelectReview.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1572844785564" units="1" version="1.0"/>
+</session>

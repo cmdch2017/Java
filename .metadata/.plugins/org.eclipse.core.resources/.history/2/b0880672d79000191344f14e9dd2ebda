@@ -1,0 +1,50 @@
+package 抽象类;
+//如果一个抽象类中的所有方法都是抽象的，则可以将这个类（abstract）用另外一种方式来定义
+//即接口，猜想作用：可以防止想要实现的功能遗漏，更加思路清晰
+interface Animal{
+	String AnimalBehavior="动物的行为";
+	void breathe();//定义抽象方法
+	void run();
+}
+interface LandAnimal extends Animal{
+	void liveOnland();
+}
+class Dog implements LandAnimal{
+public void breathe() {
+	System.out.println(AnimalBehavior+"："+"狗在呼吸");
+}
+public void run() {
+	System.out.println(AnimalBehavior+"："+"狗在奔跑");
+}
+public void liveOnland() {
+	System.out.println("狗生活在陆地");
+}
+}
+public class Solution {
+ public static void main(String[] args) {
+	 Dog dog=new Dog();
+	 dog.breathe();
+	 dog.run();
+	 dog.liveOnland();
+ }
+}
+//interface Animal{
+//String AnimalBehavior="动物的行为";
+//void breathe();//定义抽象方法
+//void run();
+//}
+//class Dog implements Animal{
+//public void breathe() {
+//System.out.println(AnimalBehavior+"："+"狗在呼吸");
+//}
+//public void run() {
+//System.out.println(AnimalBehavior+"："+"狗在奔跑");
+//}
+//}
+//public class Solution {
+//public static void main(String[] args) {
+// Dog dog=new Dog();
+// dog.breathe();
+// dog.run();
+//}
+//}

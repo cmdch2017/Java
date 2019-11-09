@@ -1,0 +1,103 @@
+package test611;
+ class Node{
+	int val;
+	Node next;
+	Node (int value){
+		val=value;
+	}
+}
+public class Arraylist {
+	int getLength(Node head) {
+		Node p=head;
+		int count=0;
+		while(p!=null) {
+			p=p.next;
+			count++;
+		}
+		return count;
+	}
+	Node findMiddle(Node head) {
+		if(head==null) return null;
+		Node p=head;
+		for(int i=0;i<getLength(head)/2;i++) {
+			p=p.next;
+		}
+		return p;
+	}
+	Node findMiddle2(Node head) {
+		Node p=head;
+		Node q=head;
+		while(p!=null) {
+			p=p.next;
+			if(p==null) break;
+			q=q.next;
+			p=p.next;
+		}
+		return p;
+	}
+	Node split(Node head,int x) {
+		Node p=null;//small
+		Node q=null;//big
+		Node node=head;
+		Node smalllast=null;
+		Node biglast=null;
+		while(node!=null){
+			if(node.val<x)
+			{
+				if(p==null) {
+				p=node;//cur
+				}
+				else {
+					smalllast.next=node;
+				}
+				smalllast=node;
+			}
+			else {
+				if(q==null) {
+					q=node;
+					}
+					else {
+						biglast.next=node;
+					}
+					biglast=node;
+				}
+			}
+	
+	return p;
+		}
+	Node delete(Node head) {
+		if(head==null) return null;
+		if(head.next==null) return head;
+		Node fake=new Node (0);
+		fake.next=head;
+		Node prev=fake;
+		Node p1=head;
+		Node p2=p1.next;
+		while(p2!=null) {
+		  if(p1!=p2) {
+			prev=p1;
+			p2=p2.next;
+			p1=p1.next;
+		  }
+		  else {
+			  p2=p2.next;
+			  while(p2!=null&&p2.val==p1.val) {
+				  p2=p2.next;
+			  }
+//			  if(p2==null)
+//			  { 
+//				  prev.next=null;
+//				  return head;
+//			  }
+			  prev.next=p2;
+			  p1=p2;
+			  if(p2.next!=null)
+			  p2=p2.next;
+		  }
+		}
+		return head;
+	}
+public static void main(String[] args) {
+	
+}
+}

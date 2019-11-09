@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Encapsulate field &apos;test_116.MyRunnable.name&apos; in &apos;test_116.MyRunnable&apos;&#x0D;&#x0A;- Original project: &apos;test_116&apos;&#x0D;&#x0A;- Original element: &apos;test_116.MyRunnable.name&apos;&#x0D;&#x0A;- Getter method name: &apos;getName&apos;&#x0D;&#x0A;- Setter method name: &apos;setName&apos;&#x0D;&#x0A;- Field visibility: &apos;public&apos;&#x0D;&#x0A;- Use getter and setter methods in declaring type" comments="false" declaring="true" description="Encapsulate field &apos;name&apos;" flags="589830" getter="getName" id="org.eclipse.jdt.ui.self.encapsulate" input="/src&lt;test_116{MyRunnable.java[MyRunnable^name" insertion="2" setter="setName" stamp="1573048245140" version="1.0" visibility="1"/>
+</session>

@@ -1,0 +1,19 @@
+package test_1021;
+class Base2{
+	public Base2(String s){
+		System.out.println("B");
+	}
+}
+public class Solution_2 extends Base2 {
+	public Solution_2(String s) {
+		super(s);
+		System.out.println(s);
+		// TODO 自动生成的构造函数存根
+		System.out.println("D");
+	}
+	public static void main(String[] args) {
+		new Solution_2("C");
+	}
+
+
+}

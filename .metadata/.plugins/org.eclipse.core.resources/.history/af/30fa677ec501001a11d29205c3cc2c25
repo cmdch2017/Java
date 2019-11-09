@@ -1,0 +1,15 @@
+package Consumer;
+
+public class Stack {
+
+	public void push(char c) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+	public char pop() {
+		// TODO 自动生成的方法存根
+		return 0;
+	}
+
+}
