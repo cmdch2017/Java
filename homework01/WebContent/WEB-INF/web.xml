@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>homework01</display-name>
+  <servlet>
+  	<servlet-name>ConfigDemoServlet</servlet-name>
+  	<servlet-class>com.demo.ConfigDemoServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>ConfigDemoServlet</servlet-name>
+  	<url-pattern>/config-demo</url-pattern>
+  </servlet-mapping>
+  
+  <!-- 配置整个web应用的初始化参数 -->
+  <context-param>
+  	<param-name>admin-email</param-name>
+  	<param-value>123456@qq.com</param-value>
+  </context-param>
+  
+  <context-param>
+  	<param-name>admin-tel</param-name>
+  	<param-value>1234567890</param-value>
+  </context-param>
+</web-app>
